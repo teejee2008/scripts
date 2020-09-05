@@ -19,7 +19,7 @@ sudo cp -r refind-theme-regular /boot/efi/EFI/refind/
 echo ""
 echo "Apply theme..."
 conf="/boot/efi/EFI/refind/refind.conf"
-if ! grep -q 'include refind-theme-regular/theme.conf' "$conf" ; then
+if ! sudo grep -q 'include refind-theme-regular/theme.conf' "$conf" ; then
 echo "include refind-theme-regular/theme.conf" | sudo tee -a "$conf"
 fi
 
