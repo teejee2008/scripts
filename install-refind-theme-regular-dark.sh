@@ -36,14 +36,16 @@ sudo cp -r refind-theme-regular "${refind_path}/"
 echo ""
 echo "Apply theme..."
 echo ""
+
 conf="${refind_path}/refind.conf"
 if ! sudo grep -q 'include refind-theme-regular/theme.conf' "$conf" ; then
-echo "include refind-theme-regular/theme.conf" | sudo tee -a "$conf" || echo "OK"
+    echo "include refind-theme-regular/theme.conf" | sudo tee -a "$conf" || echo "OK"
 fi
 
 echo ""
 echo "Apply dark theme..."
 echo ""
+
 conf="${refind_path}/refind-theme-regular/theme.conf"
 sudo sed -E -i 's/^(banner refind-theme-regular.*)/#\1/g' "$conf"
 sudo sed -E -i 's/^#(banner refind-theme-regular\/icons\/128-48\/bg_dark.png)/\1/g' "$conf"
