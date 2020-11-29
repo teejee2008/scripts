@@ -39,5 +39,5 @@ echo ""
 
 conf="${refind_path}/refind.conf"
 if ! sudo grep -q 'include refind-theme-regular/theme.conf' "$conf" ; then
-    echo "include refind-theme-regular/theme.conf" | sudo tee -a "$conf"
+    echo "include refind-theme-regular/theme.conf" | sudo tee -a "$conf" || echo "OK"
 fi
