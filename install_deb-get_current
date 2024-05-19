@@ -4,7 +4,7 @@ cd "$(mktemp -d)"
 
 echo "Install dependencies"
 
-sudo apt install -y git dpkg-dev boxes 
+sudo apt install -y git dpkg-dev debhelper-compat boxes 
 
 echo "Fetch" | boxes -d stone
 
