@@ -1,0 +1,27 @@
+#!/bin/bash
+
+cd "$(mktemp -d)"
+
+echo "Install dependencies"
+
+sudo apt install -y git dpkg-dev boxes 
+
+echo "Fetch" | boxes -d stone
+
+git clone --depth=1 https://github.com/wimpysworld/deb-get.git || exit 1
+
+cd deb-get || exit 1
+
+echo "Bump version number" | boxes -d stone
+
+sed -E 's/\([0-9.-]+\)/\('$(bash ./deb-get version)-"$(date +'%Y%m%d')\)"'/' -i ./debian/changelog || exit 1
+
+echo "Build" | boxes -d stone
+
+dpkg-buildpackage -b -uc || exit 1
+
+echo "Install" | boxes -d stone
+
+sudo apt install -y ../deb-get_*_all.deb || exit 1
+
+echo "Installed successfully" | boxes -d stone
